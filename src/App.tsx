@@ -729,7 +729,12 @@ export default function App() {
             <span className="font-bold text-lg hidden sm:block">Noticeboard</span>
           </div>
           <div className="flex items-center gap-3">
-             <button onClick={() => setShowSettings(true)} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition"><Icon name="settings" /></button>
+             <button onClick={() => setShowNotifs(!showNotifs)} className="relative p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <Icon name="bell" />
+                {notifications.filter((n: any) => !n.read).length > 0 && (
+                  <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+                )}
+             </button>
              <div className="flex items-center gap-2 pl-4 border-l border-slate-200 dark:border-slate-700">
                 <div className="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center cursor-pointer" onClick={() => signOut(auth)}><Icon name="user" className="w-5 h-5" /></div>
              </div>
