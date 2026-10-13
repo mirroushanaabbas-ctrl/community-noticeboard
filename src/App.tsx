@@ -503,7 +503,53 @@ export default function App() {
           </form>
         </div>
       )}
+      {showNewEvent && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <form onSubmit={(e: any) => { e.preventDefault(); api.createEvent({ title: e.target.title.value, date: e.target.date.value, location: e.target.location.value }); setShowNewEvent(false); }} className="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+             <div className="flex justify-between items-center mb-2"><h3 className="text-xl font-bold">New Event</h3><button type="button" onClick={() => setShowNewEvent(false)} className="text-slate-400 text-xl font-bold">&times;</button></div>
+             <input name="title" placeholder="Event Name" required className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent" />
+             <input name="date" type="date" required className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent" />
+             <input name="location" placeholder="Location" required className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent" />
+             <button type="submit" className="w-full py-2 bg-blue-600 text-white font-bold rounded-lg text-sm">Create Event</button>
+          </form>
+        </div>
+      )}
 
+      {showNewItem && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <form onSubmit={(e: any) => { e.preventDefault(); api.createLostFoundItem({ title: e.target.title.value, type: e.target.type.value, description: e.target.description.value }); setShowNewItem(false); }} className="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+             <div className="flex justify-between items-center mb-2"><h3 className="text-xl font-bold">Report Item</h3><button type="button" onClick={() => setShowNewItem(false)} className="text-slate-400 text-xl font-bold">&times;</button></div>
+             <input name="title" placeholder="Item Name" required className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent" />
+             <select name="type" className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent"><option value="Lost">Lost</option><option value="Found">Found</option></select>
+             <textarea name="description" placeholder="Description..." required rows={3} className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent"></textarea>
+             <button type="submit" className="w-full py-2 bg-blue-600 text-white font-bold rounded-lg text-sm">Submit</button>
+          </form>
+        </div>
+      )}
+
+      {showNewThread && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <form onSubmit={(e: any) => { e.preventDefault(); api.createThread({ title: e.target.title.value, category: e.target.category.value, content: e.target.content.value }); setShowNewThread(false); }} className="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+             <div className="flex justify-between items-center mb-2"><h3 className="text-xl font-bold">New Thread</h3><button type="button" onClick={() => setShowNewThread(false)} className="text-slate-400 text-xl font-bold">&times;</button></div>
+             <input name="title" placeholder="Thread Subject" required className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent" />
+             <select name="category" className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent"><option value="General">General</option><option value="Recommendations">Recommendations</option></select>
+             <textarea name="content" placeholder="What's on your mind?" required rows={4} className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent"></textarea>
+             <button type="submit" className="w-full py-2 bg-blue-600 text-white font-bold rounded-lg text-sm">Post</button>
+          </form>
+        </div>
+      )}
+
+      {showNewHelp && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <form onSubmit={(e: any) => { e.preventDefault(); api.createHelpPost({ title: e.target.title.value, type: e.target.type.value, description: e.target.description.value }); setShowNewHelp(false); }} className="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+             <div className="flex justify-between items-center mb-2"><h3 className="text-xl font-bold">Help Exchange</h3><button type="button" onClick={() => setShowNewHelp(false)} className="text-slate-400 text-xl font-bold">&times;</button></div>
+             <input name="title" placeholder="Request or Offer" required className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent" />
+             <select name="type" className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent"><option value="Request">Request</option><option value="Offer">Offer</option></select>
+             <textarea name="description" placeholder="Details..." required rows={3} className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded bg-transparent"></textarea>
+             <button type="submit" className="w-full py-2 bg-blue-600 text-white font-bold rounded-lg text-sm">Publish</button>
+          </form>
+        </div>
+      )}
       <style dangerouslySetInnerHTML={{__html: ` .hide-scrollbar::-webkit-scrollbar { display: none; } .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; } `}} />
     </div>
   );
